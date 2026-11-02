@@ -6,6 +6,9 @@ import json
 import os
 import subprocess
 import time
+import sys
+
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 root = Path(__file__).resolve().parents[1]
 workspace = root.parent
@@ -23,6 +26,7 @@ env.update(DOTNET_ROOT=str(tools/"dotnet"), DOTNET_CLI_HOME=str(tools/"dotnet-ho
 env["PATH"] = str(node_dir) + os.pathsep + str(tools/"dotnet") + os.pathsep + env.get("PATH", "")
 local = dict(line.split("=",1) for line in (root/".env").read_text().splitlines() if line and not line.startswith("#"))
 env["FACTORY_TEST_CONNECTION"] = "Host=127.0.0.1;Port=55432;Database=codefactory;Username=factory;Password=" + local["POSTGRES_PASSWORD"]
+env["FACTORY_TEST_RABBITMQ"] = "amqp://factory:" + local["RABBITMQ_PASSWORD"] + "@127.0.0.1:55672/"
 output = root / "artifacts/local/validation"
 output.mkdir(parents=True, exist_ok=True)
 sln = workspace / "CodeFactoryAI.API/CodeFactoryAI.slnx"

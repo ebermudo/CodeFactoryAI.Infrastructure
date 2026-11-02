@@ -1,22 +1,36 @@
 # CodeFactoryAI.Infrastructure
 
-Infraestructura local y runner independiente de Foundation. [Informe completo](docs/foundation-report.md) · [Evidencias](docs/evidence/foundation-validation.json) · [Plan inicial](docs/phase-0.md).
+Arranque completo de desarrollo, exclusivamente Fase 1. [Guía y diagnóstico](docs/local-development.md) · [Evidencias reales](docs/evidence/local-environment.json).
 
-Desde la raíz conjunta, en PowerShell (sin cambiar políticas globales):
+Desde la raíz conjunta CodeFactoryAI:
 
-```text
-python CodeFactoryAI.Infrastructure/scripts/setup_foundation.py
-docker compose --env-file CodeFactoryAI.Infrastructure/.env -f CodeFactoryAI.Infrastructure/compose.yaml up -d --wait --wait-timeout 180
-python CodeFactoryAI.Infrastructure/scripts/validate_foundation.py
-python CodeFactoryAI.Infrastructure/scripts/dev.py ui
+```powershell
+python CodeFactoryAI.Infrastructure/scripts/environment.py up
 ```
 
-Setup descarga herramientas portables con hashes oficiales y dependencias locales; no instala herramientas globales. En la sesión actual ya están preparadas. .env contiene secretos locales y se ignora en Git. Setup conserva valores existentes y añade claves requeridas ausentes. No compartir .env. PostgreSQL/RabbitMQ usan volúmenes persistentes y sólo puertos loopback 55432/55672/15682. No ejecutar down -v para detener.
+Deja Angular, API, PostgreSQL y RabbitMQ activos en Docker y espera sus comprobaciones de salud. migrate aplica la migración y termina con código 0. No requiere herramientas globales Node/.NET.
 
-```text
-docker compose --env-file CodeFactoryAI.Infrastructure/.env -f CodeFactoryAI.Infrastructure/compose.yaml stop
+- Frontend: http://127.0.0.1:4200/factory
+- API: http://127.0.0.1:5240/api/v1/system-health
+- Readiness SQL/AMQP: http://127.0.0.1:5240/health/ready
+- RabbitMQ management: http://127.0.0.1:15682
+
+```powershell
+python CodeFactoryAI.Infrastructure/scripts/environment.py status
+python CodeFactoryAI.Infrastructure/scripts/environment.py logs
+python CodeFactoryAI.Infrastructure/scripts/environment.py check
+python CodeFactoryAI.Infrastructure/scripts/environment.py restart
+python CodeFactoryAI.Infrastructure/scripts/environment.py stop
 ```
 
-Para API: `python CodeFactoryAI.Infrastructure/scripts/dev.py api`. Para runner desactivado: `python CodeFactoryAI.Infrastructure/scripts/dev.py runner`; no lanza Codex y responde 423 a ejecución autenticada. Su paquete y venv residen en runner. Ejecución autónoma bloqueada hasta validación futura de aislamiento.
+Modo host con ng serve y dotnet watch, más PostgreSQL/RabbitMQ en Docker:
 
-Scripts PowerShell equivalentes disponibles en scripts; si la política local los bloquea, usar las rutas Python anteriores sin alterar política global. Logs/JUnit/TRX en artifacts/local/validation. Cada repositorio sigue siendo independiente. [AGENTS](AGENTS.md).
+```powershell
+python CodeFactoryAI.Infrastructure/scripts/environment.py up --mode host
+```
+
+Usa las herramientas portables ya preparadas; si faltan, ejecutar explícitamente scripts/setup_foundation.py. dev.py ui/api sigue disponible para terminales de primer plano; mantenerlas abiertas. El comando gestionado registra procesos y logs y detecta puertos ajenos, sin matar procesos desconocidos. Los modos comparten URLs y cambian sin compartir node_modules/bin/obj entre sistemas.
+
+.env contiene secretos locales ignorados en Git; no se incluyen en imágenes. Los volúmenes persisten al detener. No se monta Docker socket ni credenciales Codex. El runner permanece independiente y su ejecución bloqueada; environment.py no lo inicia. Fase 2/RSC no se han integrado.
+
+[Informe Foundation original](docs/foundation-report.md) · [Instrucciones](AGENTS.md).

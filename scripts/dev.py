@@ -1,38 +1,41 @@
-"""Explicit local launch commands. Never starts Codex or generated code."""
-from pathlib import Path
-import json
-import os
+"""Foreground hot-reload launcher. For persistent all-services startup use environment.py."""
+
+import argparse
 import subprocess
 import sys
 
-root = Path(__file__).resolve().parents[1]
-workspace = root.parent
-tools = root / ".tools"
-versions = json.loads((root / "toolchain.json").read_text())
-node = tools / f"node-download/node-{versions['node']}-win-x64"
-env = os.environ.copy()
-env.update(DOTNET_ROOT=str(tools / "dotnet"), DOTNET_CLI_HOME=str(tools / "dotnet-home"), DOTNET_CLI_TELEMETRY_OPTOUT="1", NUGET_PACKAGES=str(tools / "nuget"), NPM_CONFIG_CACHE=str(tools / "npm-cache"), PLAYWRIGHT_BROWSERS_PATH=str(tools / "playwright"))
-env["PATH"] = str(node) + os.pathsep + str(tools / "dotnet") + os.pathsep + env.get("PATH", "")
-values = {}
-env_file = root / ".env"
-if env_file.exists():
-    values = dict(line.split("=",1) for line in env_file.read_text().splitlines() if line and not line.startswith("#"))
-option = sys.argv[1] if len(sys.argv) == 2 else ""
-if option == "ui":
-    cwd = workspace / "CodeFactoryAI.ClientAngular"
-    command = [str(node / "node.exe"), str(cwd / "node_modules/@angular/cli/bin/ng.js"), "serve", "--host", "127.0.0.1", "--port", "4200"]
-elif option == "api":
-    cwd = workspace / "CodeFactoryAI.API"
-    if "POSTGRES_PASSWORD" not in values:
-        raise SystemExit("Create local .env first; see README.")
-    env["ConnectionStrings__Factory"] = "Host=127.0.0.1;Port=55432;Database=codefactory;Username=factory;Password=" + values["POSTGRES_PASSWORD"]
-    command = [str(tools / "dotnet/dotnet.exe"), "run", "--project", "src/CodeFactoryAI.Api", "--no-launch-profile", "--urls", "http://127.0.0.1:5240"]
-elif option == "runner":
-    cwd = root / "runner"
-    if "RUNNER_SERVICE_TOKEN" not in values:
-        raise SystemExit("Create RUNNER_SERVICE_TOKEN in ignored .env; use at least 32 random characters.")
-    env["RUNNER_SERVICE_TOKEN"] = values["RUNNER_SERVICE_TOKEN"]
-    command = [str(cwd / ".venv/Scripts/python.exe"), "-m", "uvicorn", "codefactory_runner.main:app_factory", "--factory", "--host", "127.0.0.1", "--port", "8190"]
-else:
-    raise SystemExit("Usage: python scripts/dev.py ui|api|runner")
-raise SystemExit(subprocess.call(command, cwd=cwd, env=env))
+from dev_config import application_command
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Foreground development server. Keep this terminal open; Ctrl+C stops it."
+    )
+    parser.add_argument("service", choices=["ui", "api", "runner"])
+    parser.add_argument(
+        "--no-watch", action="store_true", help="Disable dotnet watch for API"
+    )
+    options = parser.parse_args()
+    try:
+        command, cwd, env = application_command(
+            options.service, watch=not options.no_watch
+        )
+        print(f"Starting {options.service} in {cwd}", flush=True)
+        print(
+            "Foreground server: keep this terminal open. For detached startup: python scripts/environment.py up",
+            flush=True,
+        )
+        child = subprocess.Popen(command, cwd=cwd, env=env)
+        try:
+            return child.wait()
+        except KeyboardInterrupt:
+            child.terminate()
+            child.wait(timeout=15)
+            return 130
+    except (OSError, RuntimeError, subprocess.SubprocessError) as error:
+        print(f"Development startup failed: {error}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

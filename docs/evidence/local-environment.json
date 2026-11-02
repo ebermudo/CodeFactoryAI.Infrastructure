@@ -1,0 +1,336 @@
+{
+  "timestampUtc": "2026-11-02T17:23:34.477704+00:00",
+  "scope": "Phase 1 local development environment repair",
+  "diagnosis": {
+    "initialListeners4200And5240": false,
+    "foregroundUiReproductionHttp": 200,
+    "initialComposeServices": [
+      "postgres",
+      "rabbitmq"
+    ],
+    "previousExitCause": "not established; no previous persistent logs"
+  },
+  "docker": {
+    "timestampUtc": "2026-11-02T17:18:33.104588+00:00",
+    "checks": {
+      "timestampUtc": "2026-11-02T17:18:30.932572+00:00",
+      "frontend": "http://127.0.0.1:4200",
+      "api": "http://127.0.0.1:5240",
+      "dependencies": {
+        "postgres": "healthy",
+        "rabbitmq": "healthy"
+      },
+      "proxyHttp": 200,
+      "projectsHttp": 401,
+      "corsAllowed": "http://127.0.0.1:4200",
+      "corsExternalRejected": true,
+      "autonomousExecutionEnabled": false
+    },
+    "services": [
+      {
+        "Service": "api",
+        "State": "running",
+        "Health": "healthy",
+        "ExitCode": 0,
+        "Publishers": [
+          {
+            "URL": "127.0.0.1",
+            "TargetPort": 8080,
+            "PublishedPort": 5240,
+            "Protocol": "tcp"
+          }
+        ],
+        "Image": "codefactory-api:local"
+      },
+      {
+        "Service": "client",
+        "State": "running",
+        "Health": "healthy",
+        "ExitCode": 0,
+        "Publishers": [
+          {
+            "URL": "127.0.0.1",
+            "TargetPort": 4200,
+            "PublishedPort": 4200,
+            "Protocol": "tcp"
+          }
+        ],
+        "Image": "codefactory-client:local"
+      },
+      {
+        "Service": "migrate",
+        "State": "exited",
+        "Health": "",
+        "ExitCode": 0,
+        "Publishers": [],
+        "Image": "codefactory-api:local"
+      },
+      {
+        "Service": "postgres",
+        "State": "running",
+        "Health": "healthy",
+        "ExitCode": 0,
+        "Publishers": [
+          {
+            "URL": "127.0.0.1",
+            "TargetPort": 5432,
+            "PublishedPort": 55432,
+            "Protocol": "tcp"
+          }
+        ],
+        "Image": "postgres:17-alpine@sha256:266d3c257594e195b309ae9d1805e54c788f1d7b375f56bf6c367aac6c917e7b"
+      },
+      {
+        "Service": "rabbitmq",
+        "State": "running",
+        "Health": "healthy",
+        "ExitCode": 0,
+        "Publishers": [
+          {
+            "URL": "127.0.0.1",
+            "TargetPort": 5672,
+            "PublishedPort": 55672,
+            "Protocol": "tcp"
+          },
+          {
+            "URL": "127.0.0.1",
+            "TargetPort": 15672,
+            "PublishedPort": 15682,
+            "Protocol": "tcp"
+          }
+        ],
+        "Image": "rabbitmq:4.3.6-management-alpine@sha256:3505b6096cdbc083bcc363e74366f575ecd0c1a55be4dadcbc60fa08e34647e1"
+      }
+    ],
+    "containerBoundaries": [
+      {
+        "service": "api",
+        "uid": "1654",
+        "codexInstalled": false,
+        "providerOrRunnerCredentialsPassed": false,
+        "privileged": false,
+        "credentialOrSocketMounts": false
+      },
+      {
+        "service": "client",
+        "uid": "1000",
+        "codexInstalled": false,
+        "providerOrRunnerCredentialsPassed": false,
+        "privileged": false,
+        "credentialOrSocketMounts": false
+      }
+    ]
+  },
+  "host": {
+    "timestampUtc": "2026-11-02T17:12:39.732909+00:00",
+    "frontend": "http://127.0.0.1:4200",
+    "api": "http://127.0.0.1:5240",
+    "dependencies": {
+      "postgres": "healthy",
+      "rabbitmq": "healthy"
+    },
+    "proxyHttp": 200,
+    "projectsHttp": 401,
+    "corsAllowed": "http://127.0.0.1:4200",
+    "corsExternalRejected": true,
+    "autonomousExecutionEnabled": false,
+    "mode": "host"
+  },
+  "hotReload": {
+    "mode": "host",
+    "angularHotReload": true,
+    "dotnetHotReload": true,
+    "sourceBytesRestored": true
+  },
+  "recovery": {
+    "timestampUtc": "2026-11-02T17:08:26.595085+00:00",
+    "results": [
+      {
+        "stage": "initial",
+        "timestampUtc": "2026-11-02T17:07:36.091352+00:00",
+        "frontend": "http://127.0.0.1:4200",
+        "api": "http://127.0.0.1:5240",
+        "dependencies": {
+          "postgres": "healthy",
+          "rabbitmq": "healthy"
+        },
+        "proxyHttp": 200,
+        "projectsHttp": 401,
+        "corsAllowed": "http://127.0.0.1:4200",
+        "corsExternalRejected": true,
+        "autonomousExecutionEnabled": false
+      },
+      {
+        "stage": "rabbitmq-outage",
+        "apiReadyHttp": 503,
+        "apiLiveHttp": 200,
+        "proxyReadyHttp": 503
+      },
+      {
+        "stage": "rabbitmq-recovered",
+        "timestampUtc": "2026-11-02T17:07:55.370692+00:00",
+        "frontend": "http://127.0.0.1:4200",
+        "api": "http://127.0.0.1:5240",
+        "dependencies": {
+          "postgres": "healthy",
+          "rabbitmq": "healthy"
+        },
+        "proxyHttp": 200,
+        "projectsHttp": 401,
+        "corsAllowed": "http://127.0.0.1:4200",
+        "corsExternalRejected": true,
+        "autonomousExecutionEnabled": false
+      },
+      {
+        "stage": "postgres-outage",
+        "apiReadyHttp": 503,
+        "apiLiveHttp": 200,
+        "proxyReadyHttp": 503
+      },
+      {
+        "stage": "postgres-recovered",
+        "timestampUtc": "2026-11-02T17:08:06.429714+00:00",
+        "frontend": "http://127.0.0.1:4200",
+        "api": "http://127.0.0.1:5240",
+        "dependencies": {
+          "postgres": "healthy",
+          "rabbitmq": "healthy"
+        },
+        "proxyHttp": 200,
+        "projectsHttp": 401,
+        "corsAllowed": "http://127.0.0.1:4200",
+        "corsExternalRejected": true,
+        "autonomousExecutionEnabled": false
+      },
+      {
+        "stage": "all-containers-restarted",
+        "timestampUtc": "2026-11-02T17:08:26.594566+00:00",
+        "frontend": "http://127.0.0.1:4200",
+        "api": "http://127.0.0.1:5240",
+        "dependencies": {
+          "postgres": "healthy",
+          "rabbitmq": "healthy"
+        },
+        "proxyHttp": 200,
+        "projectsHttp": 401,
+        "corsAllowed": "http://127.0.0.1:4200",
+        "corsExternalRejected": true,
+        "autonomousExecutionEnabled": false
+      }
+    ]
+  },
+  "browser": {
+    "startTime": "2026-11-02T17:22:20.928Z",
+    "duration": 2231.1820000000007,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "foundationRegression": {
+    "phase": "1-foundation",
+    "timestampUtc": "2026-11-02T17:15:24.528638+00:00",
+    "autonomousExecutionEnabled": false,
+    "results": [
+      {
+        "name": "contracts-drift",
+        "exitCode": 0,
+        "durationSeconds": 0.19,
+        "logSha256": "6d95818f7106a1544e540dc1c8cdf66d843f027815892b0d26c6a4af61fdfa88"
+      },
+      {
+        "name": "dotnet-restore-locked",
+        "exitCode": 0,
+        "durationSeconds": 1.72,
+        "logSha256": "ada871c81e6c5445e4b91f2c8197784b2f5bf49d4bab663a64f4c1b9d62f2b96"
+      },
+      {
+        "name": "dotnet-build",
+        "exitCode": 0,
+        "durationSeconds": 2.86,
+        "logSha256": "c4d4b0f366f0021dbd1246d3c3c61a49b5e3a268834e819cf570acc376c0b92b"
+      },
+      {
+        "name": "dotnet-tests",
+        "exitCode": 0,
+        "durationSeconds": 4.52,
+        "logSha256": "50147e767b0d54f454da8dbafa3f4ef8fb49ee483cf1da3baf670560cd476a98"
+      },
+      {
+        "name": "agents-tests",
+        "exitCode": 0,
+        "durationSeconds": 1.97,
+        "logSha256": "01c2b9ffa08e5ff0a61ed05488bbcd1b9b2c044a46aed1ef5b844699c312b9f9"
+      },
+      {
+        "name": "python-lint",
+        "exitCode": 0,
+        "durationSeconds": 0.12,
+        "logSha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+      },
+      {
+        "name": "python-types",
+        "exitCode": 0,
+        "durationSeconds": 0.83,
+        "logSha256": "a3ee8cc563d620855a76e1c43ed6f1118b5d68435d0c1b38b01ae7646398501f"
+      },
+      {
+        "name": "runner-tests",
+        "exitCode": 0,
+        "durationSeconds": 1.39,
+        "logSha256": "13dabee93c85ac39fb9752ce50b3b9eca3445d3391ef728ab1ef35638d06ba95"
+      },
+      {
+        "name": "compose-config",
+        "exitCode": 0,
+        "durationSeconds": 0.2,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "services-integration",
+        "exitCode": 0,
+        "durationSeconds": 1.22,
+        "logSha256": "2927c860ea1030615768718eef6ed24d18430ee86464fb33532ae649736cad0c"
+      },
+      {
+        "name": "services-persistence",
+        "exitCode": 0,
+        "durationSeconds": 11.24,
+        "logSha256": "d634e7db72963805ad76fa60bd1026b3b54ee2f2b236e7e9226b463ae8b519a7"
+      },
+      {
+        "name": "angular-types",
+        "exitCode": 0,
+        "durationSeconds": 0.41,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "angular-build",
+        "exitCode": 0,
+        "durationSeconds": 3.78,
+        "logSha256": "e2f3af9fbd7796185d9c01995e7c01fb4db1616588d11f184133a9b32441e5ec"
+      },
+      {
+        "name": "angular-unit",
+        "exitCode": 0,
+        "durationSeconds": 2.64,
+        "logSha256": "ee22264df64bc8b1460362616ed303c47db45006c888143207efbf071c6607ff"
+      },
+      {
+        "name": "angular-contracts",
+        "exitCode": 0,
+        "durationSeconds": 0.92,
+        "logSha256": "9f19190e01592e4e8821ab6ee4be5b5e80804d52f8b7cf6cdd23908f62168012"
+      },
+      {
+        "name": "angular-e2e",
+        "exitCode": 0,
+        "durationSeconds": 11.2,
+        "logSha256": "49d68ef2aad253a0aee1d95c09f8d63ce4b0a67422cd3c86edc233c2adc973f4"
+      }
+    ]
+  },
+  "autonomousExecutionEnabled": false,
+  "phase2Started": false,
+  "rscIntegrated": false
+}

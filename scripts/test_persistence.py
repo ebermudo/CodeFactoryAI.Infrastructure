@@ -59,9 +59,9 @@ with rabbit() as connection:
         properties=pika.BasicProperties(delivery_mode=2),
         mandatory=True,
     )
-subprocess.run(compose + ["restart"], check=True, timeout=90)
+subprocess.run(compose + ["restart", "postgres", "rabbitmq"], check=True, timeout=90)
 subprocess.run(
-    compose + ["up", "-d", "--wait", "--wait-timeout", "120"], check=True, timeout=150
+    compose + ["up", "-d", "--wait", "--wait-timeout", "120", "postgres", "rabbitmq"], check=True, timeout=150
 )
 with psycopg.connect(
     host="127.0.0.1",

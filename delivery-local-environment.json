@@ -1,0 +1,15 @@
+{
+  "delivery": "phase1-local-environment-repair",
+  "repositories": {
+    "CodeFactoryAI.API": "bc21299e3cb431af5e911625793959a98e9014d1",
+    "CodeFactoryAI.ClientAngular": "206f471d41d2594e6a754c7870b366f5e4d8ba64",
+    "CodeFactoryAI.Agents": "00bf5e52b88139581ace21c6b06c8b4e755582a3"
+  },
+  "infrastructureRevision": "the commit containing this manifest",
+  "frontend": "http://127.0.0.1:4200/factory",
+  "api": "http://127.0.0.1:5240/api/v1/system-health",
+  "readiness": "http://127.0.0.1:5240/health/ready",
+  "evidence": "docs/evidence/local-environment.json",
+  "phase2Started": false,
+  "autonomousExecutionEnabled": false
+}

@@ -34,6 +34,71 @@ services:
       retries: 30
     restart: unless-stopped
     networks: [factory]
+
+  migrate:
+    image: codefactory-api:local
+    pull_policy: never
+    command: ["--migrate"]
+    environment:
+      ConnectionStrings__Factory: "Host=postgres;Database=codefactory;Username=factory;Password=${POSTGRES_PASSWORD}"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks: [factory]
+    restart: "no"
+  api:
+    image: codefactory-api:local
+    build:
+      context: ../CodeFactoryAI.API
+      target: development
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Factory: "Host=postgres;Database=codefactory;Username=factory;Password=${POSTGRES_PASSWORD}"
+      RabbitMq__ConnectionString: "amqp://factory:${RABBITMQ_PASSWORD}@rabbitmq:5672/"
+      DevCors__Origins__0: http://127.0.0.1:4200
+      DevCors__Origins__1: http://localhost:4200
+    ports:
+      - "127.0.0.1:5240:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "--max-time", "10", "http://127.0.0.1:8080/health/ready"]
+      interval: 10s
+      timeout: 12s
+      start_period: 20s
+      retries: 12
+    restart: unless-stopped
+    networks: [factory]
+  client:
+    image: codefactory-client:local
+    build:
+      context: ../CodeFactoryAI.ClientAngular
+      target: development
+    environment:
+      CODEFACTORY_API_TARGET: http://api:8080
+    ports:
+      - "127.0.0.1:4200:4200"
+    volumes:
+      - ../CodeFactoryAI.ClientAngular/src:/app/src:ro
+      - ../CodeFactoryAI.ClientAngular/angular.json:/app/angular.json:ro
+      - ../CodeFactoryAI.ClientAngular/proxy.conf.cjs:/app/proxy.conf.cjs:ro
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4200').then(async r=>process.exit(r.ok&&(await r.text()).includes('app-root')?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 10s
+      start_period: 30s
+      retries: 12
+    restart: unless-stopped
+    networks: [factory]
+
 networks:
   factory:
 volumes:
