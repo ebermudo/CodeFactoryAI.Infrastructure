@@ -1,6 +1,6 @@
 # Entrega Fase 0 · CodeFactoryAI
 
-Estado histórico: arquitectura aprobada y Fase 1 autorizada por el usuario el 2026-11-02. Foundation ya está validada; ver [informe actual](foundation-report.md). El resto de este documento conserva el plan inicial. RSC y Fase 2 requieren aprobación posterior.
+Estado histórico: arquitectura aprobada y Fase 1 autorizada por el usuario el 2026-11-02. Foundation ya está validada; ver [informe actual](foundation-report.md). El resto de este documento conserva el plan inicial. Fase 2 fue autorizada y tiene [informe propio](phase-2-report.md). RSC y Fase 3 siguen sin autorización.
 
 ## Documentos de revisión
 

@@ -1,0 +1,221 @@
+{
+  "verifiedAtUtc": "2026-11-02T19:51:20.949741+00:00",
+  "phase": "2-brain",
+  "validation": {
+    "phase": "2-brain",
+    "timestampUtc": "2026-11-02T19:46:57.991211+00:00",
+    "autonomousExecutionEnabled": false,
+    "results": [
+      {
+        "name": "contracts-drift",
+        "exitCode": 0,
+        "durationSeconds": 0.25,
+        "logSha256": "aaa81b1383f46b8179e4dc935cc8fdf20323fdc80509d2388d771841f96cd3b1"
+      },
+      {
+        "name": "dotnet-restore-locked",
+        "exitCode": 0,
+        "durationSeconds": 1.48,
+        "logSha256": "0c14316100e67d800b2d7642e8fc450c4d2660b474dda5534722d20562ebc1eb"
+      },
+      {
+        "name": "dotnet-build",
+        "exitCode": 0,
+        "durationSeconds": 4.58,
+        "logSha256": "6dfea32577e11fe3c3fd39ac8dbfe75359ef1b5980074efc7db35d589fcd4dff"
+      },
+      {
+        "name": "dotnet-tests",
+        "exitCode": 0,
+        "durationSeconds": 21.7,
+        "logSha256": "3bb072e2d60927c4fd395fcb20cb8e16e4a9fc8f6f03df14f2f074ff4f04a9cc"
+      },
+      {
+        "name": "agents-tests",
+        "exitCode": 0,
+        "durationSeconds": 2.27,
+        "logSha256": "204532002ad2bb2f93539f6a161ee7b38746fc2d611f54938b1c45f0f7660385"
+      },
+      {
+        "name": "python-lint",
+        "exitCode": 0,
+        "durationSeconds": 0.16,
+        "logSha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+      },
+      {
+        "name": "python-types",
+        "exitCode": 0,
+        "durationSeconds": 1.27,
+        "logSha256": "ecb8399edbf23ad4cacd9fb156d28186a57318eeac101aedcdc3ff78fc21a035"
+      },
+      {
+        "name": "runner-tests",
+        "exitCode": 0,
+        "durationSeconds": 1.58,
+        "logSha256": "34711467469696bc152194dbd75dc82e00f611cff401ac62259392b04ba52ecf"
+      },
+      {
+        "name": "compose-config",
+        "exitCode": 0,
+        "durationSeconds": 0.22,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "services-integration",
+        "exitCode": 0,
+        "durationSeconds": 0.97,
+        "logSha256": "2531753473cb7aa83af04ea5b564610253f4ebdec4a812d1084feed273656671"
+      },
+      {
+        "name": "services-persistence",
+        "exitCode": 0,
+        "durationSeconds": 10.22,
+        "logSha256": "cfd7ed0d5731f1df0bc778c192925693111c28d3d382ec79d2903f1bcf8fb04a"
+      },
+      {
+        "name": "angular-types",
+        "exitCode": 0,
+        "durationSeconds": 0.38,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "angular-build",
+        "exitCode": 0,
+        "durationSeconds": 3.74,
+        "logSha256": "4416f560715df8d39b4d8998ccb774d66f43f388b99773616ff46b193263dd62"
+      },
+      {
+        "name": "angular-unit",
+        "exitCode": 0,
+        "durationSeconds": 2.44,
+        "logSha256": "9efaa72f7e0514b7b141c5adaf4f53775c8b9468a5c74cf15ecdb3145d3516e1"
+      },
+      {
+        "name": "angular-contracts",
+        "exitCode": 0,
+        "durationSeconds": 0.56,
+        "logSha256": "4526d8a2cd24f033d7d99c071d3e8961602ba229ff4f1ead3a6187dc41499ac2"
+      },
+      {
+        "name": "angular-e2e",
+        "exitCode": 0,
+        "durationSeconds": 8.92,
+        "logSha256": "d3bf33d5b2e98852b2f2fed2eba16a26635f6dae53e5feea3b1658b5a7b4bec8"
+      }
+    ]
+  },
+  "counts": {
+    "dotnet": 29,
+    "agentsPytest": 9,
+    "runnerPytest": 1,
+    "infrastructurePytest": 2,
+    "angularVitest": 3,
+    "contractsNode": 57,
+    "playwrightStandard": 3,
+    "playwrightRealBrainHost": 1,
+    "playwrightRealBrainDocker": 1
+  },
+  "additionalEvidence": {
+    "phase2-host-e2e.log": {
+      "sha256": "c7b6acd0b7f6ef1274f53410bf4b8b5f7692a76e0f08c336b219f287814b3137",
+      "result": "passed"
+    },
+    "phase2-docker-e2e.log": {
+      "sha256": "84edc48d0f92e8856df22922c6d17251b111323ad40a88dd01dc51a218949654",
+      "result": "passed"
+    },
+    "phase2-backup-restore.log": {
+      "sha256": "255ce27f7c357d975a3b141d706b7bf0eb8ba419ab94c0cf618a6f6b5b2744ad",
+      "result": "passed"
+    },
+    "phase2-final-docker-up.log": {
+      "sha256": "2f125ca0c21cb55593acb3849868a56e8a21b5f1b66c25a9581eadf6ea58cb8c",
+      "result": "passed"
+    }
+  },
+  "environment": {
+    "timestampUtc": "2026-11-02T19:50:26.936212+00:00",
+    "frontend": "http://127.0.0.1:4200",
+    "api": "http://127.0.0.1:5240",
+    "mode": "docker",
+    "contextManager": "http://127.0.0.1:8108",
+    "contextManagerHttp": 200,
+    "dependencies": {
+      "postgres": "healthy",
+      "rabbitmq": "healthy"
+    },
+    "proxyHttp": 200,
+    "projectsHttp": 401,
+    "corsAllowed": "http://127.0.0.1:4200",
+    "corsExternalRejected": true,
+    "autonomousExecutionEnabled": false
+  },
+  "containers": [
+    {
+      "service": "api",
+      "health": "healthy",
+      "user": "app",
+      "providerCredentialsPresent": false
+    },
+    {
+      "service": "client",
+      "health": "healthy",
+      "user": "node",
+      "providerCredentialsPresent": false
+    },
+    {
+      "service": "context-manager",
+      "health": "healthy",
+      "user": "context",
+      "providerCredentialsPresent": false
+    },
+    {
+      "service": "postgres",
+      "health": "healthy",
+      "user": "",
+      "providerCredentialsPresent": false
+    },
+    {
+      "service": "rabbitmq",
+      "health": "healthy",
+      "user": "",
+      "providerCredentialsPresent": false
+    }
+  ],
+  "backupRestore": {
+    "backup": "20261102T195019",
+    "restoredDatabase": "isolated test database removed after verification",
+    "revisionsVerified": 15,
+    "snapshotsVerified": 4,
+    "gitBundleVerified": true,
+    "snapshotHashesVerified": true,
+    "liveDataOverwritten": false
+  },
+  "snapshotAfterRestart": {
+    "scope": "ef909ade-36a6-4945-9a17-3f30dac36aae",
+    "snapshot": "d05486c8-a6bc-4540-a8cf-f7316ecc2fb9",
+    "packageHash": "93a633dd85ff01d5c20ed3d060cce378b5f3a1dad8c54c588eb22653c0fd1825",
+    "projectName": "Brain E2E 1793648995647"
+  },
+  "hostBackupGuard": {
+    "hostBackupRejectedBeforeWriting": true,
+    "servicesStateUnchanged": true
+  },
+  "implementationCommits": {
+    "CodeFactoryAI.API": "41f791b089a1dd759f17c3061c705e18fc033fa4",
+    "CodeFactoryAI.Agents": "c108bafe2197bef836d41a36c509895d4d586af2",
+    "CodeFactoryAI.ClientAngular": "2673052b205ac7dda285f876e4cb872199074f7b"
+  },
+  "infrastructureCommit": "Contains this evidence; resolve with git log -1 in this repository",
+  "rscInstalled": false,
+  "autonomousExecutionEnabled": false,
+  "providerInvoked": false,
+  "pushPerformed": false,
+  "limits": [
+    "Local development verification, not production hardening or load testing",
+    "Byte-based context budget is conservative",
+    "Outbox provides at-least-once delivery; future consumers must deduplicate",
+    "Restore test is isolated; live database was not overwritten",
+    "RSC CLI/onboarding/hooks were not tested or enabled"
+  ]
+}

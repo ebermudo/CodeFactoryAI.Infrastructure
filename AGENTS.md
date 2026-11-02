@@ -4,7 +4,7 @@
 
 Trabajar exclusivamente en este repositorio y en sus tres hermanos autorizados dentro de Desktop/CodeFactoryAI. Verificar git rev-parse --show-toplevel, git remote -v y git status antes de cada fase. No crear repositorios, monorepo ni submódulos; no cambiar remotos ni realizar push. No tocar la copia Angular fuera de esta raíz.
 
-El usuario aprobó Fase 0 y autorizó exclusivamente Fase 1 — Foundation. No avanzar a Fase 2 sin aprobación explícita. El runner es independiente de los agentes; no duplicar lógica CLI, autenticación o cuotas en agentes. Ejecución autónoma desactivada hasta validar aislamiento. No instalar herramientas globales sin autorización. RSC Harness requiere aprobación de su plan exacto antes de instalar o modificar sus archivos gestionados. Los documentos de esta entrega son propios de CodeFactoryAI; RSC no está instalado.
+El usuario aprobó Fase 1 y autorizó Fase 2 — Brain & Persistent Knowledge completa. No avanzar a Fase 3, ejecutar agentes autónomos ni instalar/ejecutar onboarding RSC. Sólo análisis y plan RSC separado. Mantener runner independiente y bloqueado. No instalar herramientas globales sin autorización. Escritura/promoción oficiales sólo en API con validación y aprobación humana; Python selecciona contexto mediante puertos. Git y PostgreSQL deben ser recuperables, snapshots inmutables y proyectos aislados. Commits locales por hitos; no push.
 
 ## Ingeniería
 

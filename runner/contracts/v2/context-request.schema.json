@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "projectId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "taskId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "role": {
+      "enum": [
+        "specification",
+        "architect",
+        "developer",
+        "qa",
+        "review-correctness",
+        "review-architecture",
+        "review-security",
+        "review-testing",
+        "finding-verifier",
+        "approval"
+      ]
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "restrictions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "referenceCommit": {
+      "type": "string",
+      "pattern": "^([a-f0-9]{40}([a-f0-9]{24})?)?$"
+    },
+    "budgetTokens": {
+      "type": "integer",
+      "minimum": 512,
+      "maximum": 200000
+    },
+    "additionalDocumentIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      }
+    }
+  },
+  "required": [
+    "requestId",
+    "projectId",
+    "taskId",
+    "role",
+    "goal",
+    "restrictions",
+    "referenceCommit",
+    "budgetTokens",
+    "additionalDocumentIds"
+  ]
+}

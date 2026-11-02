@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "referenceCommit": {
+      "type": "string",
+      "pattern": "^([a-f0-9]{40}([a-f0-9]{24})?)?$"
+    },
+    "knowledgeCommit": {
+      "type": "string",
+      "pattern": "^([a-f0-9]{40}([a-f0-9]{24})?)?$"
+    },
+    "globalCommit": {
+      "type": "string",
+      "pattern": "^([a-f0-9]{40}([a-f0-9]{24})?)?$"
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "scopeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 180,
+            "pattern": "^[a-z0-9][a-z0-9/_-]*\\.md$"
+          },
+          "ruleKind": {
+            "enum": [
+              "mandatory",
+              "recommendation",
+              "example"
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "revisionId": {
+            "type": "string"
+          },
+          "commit": {
+            "type": "string",
+            "pattern": "^([a-f0-9]{40}([a-f0-9]{24})?)?$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^([a-f0-9]{64})?$"
+          },
+          "content": {
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "unpublished",
+              "official",
+              "stale"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "scopeId",
+          "title",
+          "category",
+          "path",
+          "ruleKind",
+          "version",
+          "revisionId",
+          "commit",
+          "sha256",
+          "content",
+          "state"
+        ]
+      }
+    }
+  },
+  "required": [
+    "projectId",
+    "referenceCommit",
+    "knowledgeCommit",
+    "globalCommit",
+    "documents"
+  ]
+}

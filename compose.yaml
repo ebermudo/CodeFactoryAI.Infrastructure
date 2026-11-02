@@ -38,12 +38,27 @@ services:
   migrate:
     image: codefactory-api:local
     pull_policy: never
-    command: ["--migrate"]
+    command: ["--migrate", "--provision-admin", "--seed-brain"]
     environment:
+      Brain__BootstrapPassword: ${BRAIN_BOOTSTRAP_PASSWORD:?Set local operator password}
       ConnectionStrings__Factory: "Host=postgres;Database=codefactory;Username=factory;Password=${POSTGRES_PASSWORD}"
+      Brain__GitDir: /brain-git
+      Brain__StateDir: /brain-state
+      Brain__SeedFile: /brain-seeds/global-v1.json
+      Brain__Repositories__api: /registered/api.git
+      Brain__Repositories__agents: /registered/agents.git
+      Brain__Repositories__client: /registered/client.git
+      Brain__Repositories__infrastructure: /brain-git
     depends_on:
       postgres:
         condition: service_healthy
+    volumes:
+      - ./.git:/brain-git
+      - ./artifacts/local/brain:/brain-state
+      - ./knowledge/seeds:/brain-seeds:ro
+      - ../CodeFactoryAI.API/.git:/registered/api.git:ro
+      - ../CodeFactoryAI.Agents/.git:/registered/agents.git:ro
+      - ../CodeFactoryAI.ClientAngular/.git:/registered/client.git:ro
     networks: [factory]
     restart: "no"
   api:
@@ -54,9 +69,23 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__Factory: "Host=postgres;Database=codefactory;Username=factory;Password=${POSTGRES_PASSWORD}"
+      Brain__GitDir: /brain-git
+      Brain__StateDir: /brain-state
+      Brain__SeedFile: /brain-seeds/global-v1.json
+      Brain__Repositories__api: /registered/api.git
+      Brain__Repositories__agents: /registered/agents.git
+      Brain__Repositories__client: /registered/client.git
+      Brain__Repositories__infrastructure: /brain-git
       RabbitMq__ConnectionString: "amqp://factory:${RABBITMQ_PASSWORD}@rabbitmq:5672/"
       DevCors__Origins__0: http://127.0.0.1:4200
       DevCors__Origins__1: http://localhost:4200
+    volumes:
+      - ./.git:/brain-git
+      - ./artifacts/local/brain:/brain-state
+      - ./knowledge/seeds:/brain-seeds:ro
+      - ../CodeFactoryAI.API/.git:/registered/api.git:ro
+      - ../CodeFactoryAI.Agents/.git:/registered/agents.git:ro
+      - ../CodeFactoryAI.ClientAngular/.git:/registered/client.git:ro
     ports:
       - "127.0.0.1:5240:8080"
     depends_on:
@@ -81,6 +110,7 @@ services:
       target: development
     environment:
       CODEFACTORY_API_TARGET: http://api:8080
+      CODEFACTORY_CONTEXT_TARGET: http://context-manager:8108
     ports:
       - "127.0.0.1:4200:4200"
     volumes:
@@ -95,6 +125,25 @@ services:
       interval: 10s
       timeout: 10s
       start_period: 30s
+      retries: 12
+    restart: unless-stopped
+    networks: [factory]
+
+  context-manager:
+    image: codefactory-context:local
+    build:
+      context: ../CodeFactoryAI.Agents
+    environment:
+      BRAIN_API_URL: http://api:8080
+    ports:
+      - "127.0.0.1:8108:8108"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8108/health/live')"]
+      interval: 10s
+      timeout: 5s
       retries: 12
     restart: unless-stopped
     networks: [factory]

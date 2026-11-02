@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "scopeId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "state": {
+      "enum": [
+        "empty",
+        "available",
+        "stale",
+        "pending",
+        "error"
+      ]
+    },
+    "referenceCommit": {
+      "type": "string",
+      "pattern": "^([a-f0-9]{40}([a-f0-9]{24})?)?$"
+    },
+    "knowledgeCommit": {
+      "type": "string",
+      "pattern": "^([a-f0-9]{40}([a-f0-9]{24})?)?$"
+    },
+    "documentCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "pendingProposals": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "rscInstalled": {
+      "const": false
+    },
+    "autonomousExecutionEnabled": {
+      "const": false
+    }
+  },
+  "required": [
+    "scopeId",
+    "state",
+    "referenceCommit",
+    "knowledgeCommit",
+    "documentCount",
+    "pendingProposals",
+    "rscInstalled",
+    "autonomousExecutionEnabled"
+  ]
+}

@@ -31,7 +31,7 @@ if not ef.exists():
 env_file=root/".env"
 existing = env_file.read_text(encoding="utf-8") if env_file.exists() else ""
 known = {line.split("=",1)[0] for line in existing.splitlines() if line and not line.startswith("#")}
-additions = "".join(f"{name}={secrets.token_hex(32)}\n" for name in ["POSTGRES_PASSWORD","RABBITMQ_PASSWORD","RUNNER_SERVICE_TOKEN"] if name not in known)
+additions = "".join(f"{name}=Aa1!{secrets.token_hex(32)}\n" for name in ["POSTGRES_PASSWORD","RABBITMQ_PASSWORD","RUNNER_SERVICE_TOKEN","BRAIN_BOOTSTRAP_PASSWORD"] if name not in known)
 if additions:
     env_file.write_text(existing.rstrip() + ("\n" if existing else "") + additions,encoding="utf-8")
 print("Foundation dependencies ready. Start Compose explicitly; no application or Codex execution has been started.")

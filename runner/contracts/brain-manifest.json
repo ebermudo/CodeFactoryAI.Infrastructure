@@ -1,0 +1,15 @@
+{
+  "schemas": {
+    "brain-document.schema.json": "4ee84982ce769af1f9ad8b1aa5ad91532f824e3baa602c2ace51d4d699186ed4",
+    "brain-scope.schema.json": "35b68225bcc58a6b98f26287ec84788046a87aefc1461d6372df809d1a3b7e0b",
+    "brain-status.schema.json": "8e858db55648c8634879db4f43d18fe8c90f9e0c77816c40b35008f332e20d24",
+    "context-catalog.schema.json": "0fc5c62740224e6686ed6bdc9cd3855ca84365192075264e1bb8fd4a3874dbc7",
+    "context-package.schema.json": "4ae04be171ce51441472d9f089f75799b5ba163a6c22823df968467008669927",
+    "context-request.schema.json": "41ec710852fe75883ef10f988b7917a052431f324f63b73bbbb7a915eb101383",
+    "context-snapshot.schema.json": "3f5b8de853b1bd08392796dd5a24d92e5206ab89bfa213e5ceab46ba9613f708",
+    "knowledge-approval.schema.json": "fa8e896a55ebb4eb9df2ee37b6cd55e2cbcff4c81aae1ee868906309055ebee7",
+    "knowledge-proposal.schema.json": "f9925e11ab0fe4b65627569d509d1c2dd9eca6e9faa851610c3f7d43f7bfcf8d",
+    "knowledge-revision.schema.json": "839e1735c65a00070af3d5bd66e40c027f816f6349844911d2337ff3922dd772"
+  },
+  "version": "2.0.0"
+}

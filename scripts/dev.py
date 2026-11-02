@@ -11,7 +11,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(
         description="Foreground development server. Keep this terminal open; Ctrl+C stops it."
     )
-    parser.add_argument("service", choices=["ui", "api", "runner"])
+    parser.add_argument("service", choices=["ui", "api", "context", "runner"])
     parser.add_argument(
         "--no-watch", action="store_true", help="Disable dotnet watch for API"
     )

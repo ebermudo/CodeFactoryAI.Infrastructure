@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "label",
+    "repositoryAlias"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "label": {
+      "type": "string"
+    },
+    "repositoryAlias": {
+      "enum": [
+        "api",
+        "agents",
+        "infrastructure",
+        "client"
+      ]
+    }
+  }
+}

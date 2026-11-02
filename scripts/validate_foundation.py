@@ -46,7 +46,7 @@ commands = [
     ("angular-types", [str(node),str(client/"node_modules/typescript/bin/tsc"),"-p","tsconfig.contracts.json"], client),
     ("angular-build", [str(node),str(ng),"build"], client),
     ("angular-unit", [str(node),str(client/"node_modules/vitest/vitest.mjs"),"run"], client),
-    ("angular-contracts", [str(node),"--test","tests/contracts.test.mjs"], client),
+    ("angular-contracts", [str(node),"--test","tests/contracts.test.mjs","tests/brain-contracts.test.mjs"], client),
     ("angular-e2e", [str(node),str(client/"node_modules/@playwright/test/cli.js"),"test"], client),
 ]
 results=[]
@@ -60,6 +60,6 @@ for name, command, cwd in commands:
     if result.returncode:
         print(log.read_text(encoding="utf-8",errors="replace")[-5000:])
         break
-report={"phase":"1-foundation","timestampUtc":datetime.now(timezone.utc).isoformat(),"autonomousExecutionEnabled":False,"results":results}
+report={"phase":"2-brain","timestampUtc":datetime.now(timezone.utc).isoformat(),"autonomousExecutionEnabled":False,"results":results}
 (output/"summary.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
 raise SystemExit(0 if len(results)==len(commands) and all(r["exitCode"]==0 for r in results) else 1)

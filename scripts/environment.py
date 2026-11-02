@@ -56,6 +56,15 @@ def ensure_environment(create: bool = False) -> None:
             encoding="utf-8",
         )
         print("Created ignored .env with random local infrastructure secrets.")
+    values = ENV_FILE.read_text(encoding="utf-8-sig")
+    if "BRAIN_BOOTSTRAP_PASSWORD=" not in values:
+        with ENV_FILE.open("a", encoding="utf-8") as stream:
+            stream.write(
+                "\nBRAIN_BOOTSTRAP_PASSWORD=Aa1!" + secrets.token_hex(32) + "\n"
+            )
+        print(
+            "Created ignored initial Brain operator password; existing accounts are never reset."
+        )
     for name in [
         "CodeFactoryAI.API",
         "CodeFactoryAI.ClientAngular",
@@ -102,11 +111,11 @@ def require_free_ports(allow_docker: bool = False) -> None:
         )
         for line in output.splitlines():
             service = json.loads(line)
-            if service.get("Service") in ("api", "client"):
+            if service.get("Service") in ("api", "client", "context-manager"):
                 managed_ports.update(
                     p["PublishedPort"] for p in service.get("Publishers", []) or []
                 )
-    for port in (4200, 5240):
+    for port in (4200, 5240, 8108):
         if port_open(port) and port not in managed_ports:
             raise RuntimeError(
                 f"Port {port} is already used by an unmanaged process. Stop its terminal/server first; diagnose with environment.py status."
@@ -143,6 +152,14 @@ def verify(timeout: int = 180) -> dict:
                 or json.loads(body).get("autonomousExecutionEnabled") is not False
             ):
                 raise RuntimeError(f"Angular-to-API proxy failed (HTTP {code})")
+            code, body, _ = http("http://127.0.0.1:8108/health/live")
+            if (
+                code != 200
+                or json.loads(body).get("autonomousExecutionEnabled") is not False
+            ):
+                raise RuntimeError(
+                    "Context Manager is not ready or autonomy guard failed"
+                )
             code, _, _ = http(UI + "/api/v1/projects")
             if code != 401:
                 raise RuntimeError(
@@ -160,6 +177,9 @@ def verify(timeout: int = 180) -> dict:
                 "timestampUtc": datetime.now(timezone.utc).isoformat(),
                 "frontend": UI,
                 "api": API,
+                "mode": load_state().get("mode"),
+                "contextManager": "http://127.0.0.1:8108",
+                "contextManagerHttp": 200,
                 "dependencies": ready["dependencies"],
                 "proxyHttp": 200,
                 "projectsHttp": 401,
@@ -179,7 +199,7 @@ def verify(timeout: int = 180) -> dict:
 
 
 def start_host() -> None:
-    run(COMPOSE + ["stop", "api", "client"])
+    run(COMPOSE + ["stop", "api", "client", "context-manager"])
     stop_host()
     require_free_ports()
     run(
@@ -199,7 +219,7 @@ def start_host() -> None:
     state = {"mode": "host", "processes": {}}
     STATE.write_text(json.dumps(state))
     try:
-        for name in ("api", "ui"):
+        for name in ("api", "ui", "context"):
             # Validate commands before detaching; children survive the launcher, not user terminals.
             application_command(name)
             with (LOGS / (name + ".log")).open("w", encoding="utf-8") as stream:
@@ -265,7 +285,7 @@ def main() -> int:
                 + (
                     ["postgres", "rabbitmq"]
                     if mode == "host"
-                    else ["postgres", "rabbitmq", "api", "client"]
+                    else ["postgres", "rabbitmq", "api", "client", "context-manager"]
                 )
             )
             run(
@@ -277,7 +297,7 @@ def main() -> int:
         elif options.action == "logs":
             run(COMPOSE + ["logs", "--tail", "60", "--no-color"])
             if mode == "host":
-                for name in ("api", "ui", "migrations"):
+                for name in ("api", "ui", "context", "migrations"):
                     path = LOGS / (name + ".log")
                     if path.exists():
                         print(
@@ -290,12 +310,14 @@ def main() -> int:
             print(
                 f"Mode: {state.get('mode')}; host processes: {state.get('processes', {})}"
             )
-            print(f"Listening: 4200={port_open(4200)}, 5240={port_open(5240)}")
+            print(
+                f"Listening: 4200={port_open(4200)}, 5240={port_open(5240)}, 8108={port_open(8108)}"
+            )
             return 0
         else:
             verify(timeout=15)
         print(
-            f"READY ({mode})\nFrontend: {UI}/factory\nAPI: {API}/api/v1/system-health\nAPI + PostgreSQL + RabbitMQ: {API}/health/ready\nRabbitMQ management: http://127.0.0.1:15682\nLogs/checks: {LOGS}\nCodex runner is independent and autonomous execution remains disabled."
+            f"READY ({mode})\nFrontend: {UI}/factory\nBrain Explorer: {UI}/brain\nContext Manager: http://127.0.0.1:8108/health/live\nAPI: {API}/api/v1/system-health\nAPI + PostgreSQL + RabbitMQ: {API}/health/ready\nRabbitMQ management: http://127.0.0.1:15682\nLogs/checks: {LOGS}\nCodex runner is independent and autonomous execution remains disabled."
         )
         return 0
     except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:

@@ -76,7 +76,38 @@ def application_command(
             cwd,
             env,
         )
+    if name == "context":
+        cwd = WORKSPACE / "CodeFactoryAI.Agents"
+        python = cwd / ".venv/Scripts/python.exe"
+        if not python.exists():
+            raise RuntimeError(
+                "Agents virtual environment missing; run setup_foundation.py."
+            )
+        env["BRAIN_API_URL"] = "http://127.0.0.1:5240"
+        command = [
+            str(python),
+            "-m",
+            "uvicorn",
+            "codefactory_agents.api.context.app:app",
+            "--host",
+            "127.0.0.1",
+            "--port",
+            "8108",
+        ]
+        if watch:
+            command += ["--reload", "--reload-dir", "src"]
+        return command, cwd, env
     values = local_values()
+    env["Brain__GitDir"] = str(ROOT / ".git")
+    env["Brain__StateDir"] = str(ROOT / "artifacts/local/brain")
+    env["Brain__SeedFile"] = str(ROOT / "knowledge/seeds/global-v1.json")
+    for alias, repo in [
+        ("api", "CodeFactoryAI.API"),
+        ("agents", "CodeFactoryAI.Agents"),
+        ("client", "CodeFactoryAI.ClientAngular"),
+        ("infrastructure", "CodeFactoryAI.Infrastructure"),
+    ]:
+        env["Brain__Repositories__" + alias] = str(WORKSPACE / repo / ".git")
     if name == "api":
         cwd = WORKSPACE / "CodeFactoryAI.API"
         dotnet = TOOLS / "dotnet/dotnet.exe"
@@ -90,6 +121,7 @@ def application_command(
             "amqp://factory:" + values["RABBITMQ_PASSWORD"] + "@127.0.0.1:55672/"
         )
         if migrate:
+            env["Brain__BootstrapPassword"] = values["BRAIN_BOOTSTRAP_PASSWORD"]
             command = [
                 str(dotnet),
                 "run",
@@ -98,6 +130,8 @@ def application_command(
                 "--no-launch-profile",
                 "--",
                 "--migrate",
+                "--provision-admin",
+                "--seed-brain",
             ]
         elif watch:
             command = [

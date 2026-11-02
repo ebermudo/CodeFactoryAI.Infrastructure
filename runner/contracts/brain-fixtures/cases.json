@@ -1,0 +1,525 @@
+[
+  {
+    "name": "brain-document.schema valid",
+    "schema": "brain-document.schema.json",
+    "data": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "scopeId": "11111111-1111-4111-8111-111111111111",
+      "title": "foundation-reference",
+      "category": "foundation-reference",
+      "path": "architecture/reference.md",
+      "ruleKind": "mandatory",
+      "version": 0,
+      "revisionId": "foundation-reference",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "content": "foundation-reference",
+      "state": "unpublished"
+    },
+    "valid": true
+  },
+  {
+    "name": "brain-document.schema rejects missing",
+    "schema": "brain-document.schema.json",
+    "data": {
+      "scopeId": "11111111-1111-4111-8111-111111111111",
+      "title": "foundation-reference",
+      "category": "foundation-reference",
+      "path": "architecture/reference.md",
+      "ruleKind": "mandatory",
+      "version": 0,
+      "revisionId": "foundation-reference",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "content": "foundation-reference",
+      "state": "unpublished"
+    },
+    "valid": false
+  },
+  {
+    "name": "brain-document.schema rejects unknown",
+    "schema": "brain-document.schema.json",
+    "data": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "scopeId": "11111111-1111-4111-8111-111111111111",
+      "title": "foundation-reference",
+      "category": "foundation-reference",
+      "path": "architecture/reference.md",
+      "ruleKind": "mandatory",
+      "version": 0,
+      "revisionId": "foundation-reference",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "content": "foundation-reference",
+      "state": "unpublished",
+      "unexpected": "denied"
+    },
+    "valid": false
+  },
+  {
+    "name": "brain-status.schema valid",
+    "schema": "brain-status.schema.json",
+    "data": {
+      "scopeId": "11111111-1111-4111-8111-111111111111",
+      "state": "empty",
+      "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "knowledgeCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "documentCount": 0,
+      "pendingProposals": 0,
+      "rscInstalled": false,
+      "autonomousExecutionEnabled": false
+    },
+    "valid": true
+  },
+  {
+    "name": "brain-status.schema rejects missing",
+    "schema": "brain-status.schema.json",
+    "data": {
+      "state": "empty",
+      "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "knowledgeCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "documentCount": 0,
+      "pendingProposals": 0,
+      "rscInstalled": false,
+      "autonomousExecutionEnabled": false
+    },
+    "valid": false
+  },
+  {
+    "name": "brain-status.schema rejects unknown",
+    "schema": "brain-status.schema.json",
+    "data": {
+      "scopeId": "11111111-1111-4111-8111-111111111111",
+      "state": "empty",
+      "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "knowledgeCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "documentCount": 0,
+      "pendingProposals": 0,
+      "rscInstalled": false,
+      "autonomousExecutionEnabled": false,
+      "unexpected": "denied"
+    },
+    "valid": false
+  },
+  {
+    "name": "context-catalog.schema valid",
+    "schema": "context-catalog.schema.json",
+    "data": {
+      "projectId": "11111111-1111-4111-8111-111111111111",
+      "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "knowledgeCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "globalCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "documents": []
+    },
+    "valid": true
+  },
+  {
+    "name": "context-catalog.schema rejects missing",
+    "schema": "context-catalog.schema.json",
+    "data": {
+      "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "knowledgeCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "globalCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "documents": []
+    },
+    "valid": false
+  },
+  {
+    "name": "context-catalog.schema rejects unknown",
+    "schema": "context-catalog.schema.json",
+    "data": {
+      "projectId": "11111111-1111-4111-8111-111111111111",
+      "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "knowledgeCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "globalCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "documents": [],
+      "unexpected": "denied"
+    },
+    "valid": false
+  },
+  {
+    "name": "context-package.schema valid",
+    "schema": "context-package.schema.json",
+    "data": {
+      "schemaVersion": "2.0.0",
+      "snapshotId": "11111111-1111-4111-8111-111111111111",
+      "projectId": "11111111-1111-4111-8111-111111111111",
+      "taskId": "11111111-1111-4111-8111-111111111111",
+      "role": "specification",
+      "goal": "foundation-reference",
+      "restrictions": [],
+      "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "knowledgeCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "globalCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "contractsVersion": "2.0.0",
+      "budgetTokens": 512,
+      "estimatedTokens": 0,
+      "budgetMethod": "utf8-byte-upper-bound",
+      "sourceTrust": "context-only",
+      "documents": []
+    },
+    "valid": true
+  },
+  {
+    "name": "context-package.schema rejects missing",
+    "schema": "context-package.schema.json",
+    "data": {
+      "snapshotId": "11111111-1111-4111-8111-111111111111",
+      "projectId": "11111111-1111-4111-8111-111111111111",
+      "taskId": "11111111-1111-4111-8111-111111111111",
+      "role": "specification",
+      "goal": "foundation-reference",
+      "restrictions": [],
+      "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "knowledgeCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "globalCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "contractsVersion": "2.0.0",
+      "budgetTokens": 512,
+      "estimatedTokens": 0,
+      "budgetMethod": "utf8-byte-upper-bound",
+      "sourceTrust": "context-only",
+      "documents": []
+    },
+    "valid": false
+  },
+  {
+    "name": "context-package.schema rejects unknown",
+    "schema": "context-package.schema.json",
+    "data": {
+      "schemaVersion": "2.0.0",
+      "snapshotId": "11111111-1111-4111-8111-111111111111",
+      "projectId": "11111111-1111-4111-8111-111111111111",
+      "taskId": "11111111-1111-4111-8111-111111111111",
+      "role": "specification",
+      "goal": "foundation-reference",
+      "restrictions": [],
+      "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "knowledgeCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "globalCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "contractsVersion": "2.0.0",
+      "budgetTokens": 512,
+      "estimatedTokens": 0,
+      "budgetMethod": "utf8-byte-upper-bound",
+      "sourceTrust": "context-only",
+      "documents": [],
+      "unexpected": "denied"
+    },
+    "valid": false
+  },
+  {
+    "name": "context-request.schema valid",
+    "schema": "context-request.schema.json",
+    "data": {
+      "requestId": "11111111-1111-4111-8111-111111111111",
+      "projectId": "11111111-1111-4111-8111-111111111111",
+      "taskId": "11111111-1111-4111-8111-111111111111",
+      "role": "specification",
+      "goal": "foundation-reference",
+      "restrictions": [],
+      "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "budgetTokens": 512,
+      "additionalDocumentIds": []
+    },
+    "valid": true
+  },
+  {
+    "name": "context-request.schema rejects missing",
+    "schema": "context-request.schema.json",
+    "data": {
+      "projectId": "11111111-1111-4111-8111-111111111111",
+      "taskId": "11111111-1111-4111-8111-111111111111",
+      "role": "specification",
+      "goal": "foundation-reference",
+      "restrictions": [],
+      "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "budgetTokens": 512,
+      "additionalDocumentIds": []
+    },
+    "valid": false
+  },
+  {
+    "name": "context-request.schema rejects unknown",
+    "schema": "context-request.schema.json",
+    "data": {
+      "requestId": "11111111-1111-4111-8111-111111111111",
+      "projectId": "11111111-1111-4111-8111-111111111111",
+      "taskId": "11111111-1111-4111-8111-111111111111",
+      "role": "specification",
+      "goal": "foundation-reference",
+      "restrictions": [],
+      "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "budgetTokens": 512,
+      "additionalDocumentIds": [],
+      "unexpected": "denied"
+    },
+    "valid": false
+  },
+  {
+    "name": "context-snapshot.schema valid",
+    "schema": "context-snapshot.schema.json",
+    "data": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "projectId": "11111111-1111-4111-8111-111111111111",
+      "taskId": "11111111-1111-4111-8111-111111111111",
+      "packageHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "createdAt": "foundation-reference",
+      "consumedCount": 0,
+      "validity": "valid",
+      "package": {
+        "schemaVersion": "2.0.0",
+        "snapshotId": "11111111-1111-4111-8111-111111111111",
+        "projectId": "11111111-1111-4111-8111-111111111111",
+        "taskId": "11111111-1111-4111-8111-111111111111",
+        "role": "specification",
+        "goal": "foundation-reference",
+        "restrictions": [],
+        "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "knowledgeCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "globalCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "contractsVersion": "2.0.0",
+        "budgetTokens": 512,
+        "estimatedTokens": 0,
+        "budgetMethod": "utf8-byte-upper-bound",
+        "sourceTrust": "context-only",
+        "documents": []
+      }
+    },
+    "valid": true
+  },
+  {
+    "name": "context-snapshot.schema rejects missing",
+    "schema": "context-snapshot.schema.json",
+    "data": {
+      "projectId": "11111111-1111-4111-8111-111111111111",
+      "taskId": "11111111-1111-4111-8111-111111111111",
+      "packageHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "createdAt": "foundation-reference",
+      "consumedCount": 0,
+      "validity": "valid",
+      "package": {
+        "schemaVersion": "2.0.0",
+        "snapshotId": "11111111-1111-4111-8111-111111111111",
+        "projectId": "11111111-1111-4111-8111-111111111111",
+        "taskId": "11111111-1111-4111-8111-111111111111",
+        "role": "specification",
+        "goal": "foundation-reference",
+        "restrictions": [],
+        "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "knowledgeCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "globalCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "contractsVersion": "2.0.0",
+        "budgetTokens": 512,
+        "estimatedTokens": 0,
+        "budgetMethod": "utf8-byte-upper-bound",
+        "sourceTrust": "context-only",
+        "documents": []
+      }
+    },
+    "valid": false
+  },
+  {
+    "name": "context-snapshot.schema rejects unknown",
+    "schema": "context-snapshot.schema.json",
+    "data": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "projectId": "11111111-1111-4111-8111-111111111111",
+      "taskId": "11111111-1111-4111-8111-111111111111",
+      "packageHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "createdAt": "foundation-reference",
+      "consumedCount": 0,
+      "validity": "valid",
+      "package": {
+        "schemaVersion": "2.0.0",
+        "snapshotId": "11111111-1111-4111-8111-111111111111",
+        "projectId": "11111111-1111-4111-8111-111111111111",
+        "taskId": "11111111-1111-4111-8111-111111111111",
+        "role": "specification",
+        "goal": "foundation-reference",
+        "restrictions": [],
+        "referenceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "knowledgeCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "globalCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "contractsVersion": "2.0.0",
+        "budgetTokens": 512,
+        "estimatedTokens": 0,
+        "budgetMethod": "utf8-byte-upper-bound",
+        "sourceTrust": "context-only",
+        "documents": []
+      },
+      "unexpected": "denied"
+    },
+    "valid": false
+  },
+  {
+    "name": "knowledge-approval.schema valid",
+    "schema": "knowledge-approval.schema.json",
+    "data": {
+      "proposalId": "11111111-1111-4111-8111-111111111111",
+      "decision": "approved",
+      "expectedVersion": 0,
+      "reason": "foundation-reference"
+    },
+    "valid": true
+  },
+  {
+    "name": "knowledge-approval.schema rejects missing",
+    "schema": "knowledge-approval.schema.json",
+    "data": {
+      "decision": "approved",
+      "expectedVersion": 0,
+      "reason": "foundation-reference"
+    },
+    "valid": false
+  },
+  {
+    "name": "knowledge-approval.schema rejects unknown",
+    "schema": "knowledge-approval.schema.json",
+    "data": {
+      "proposalId": "11111111-1111-4111-8111-111111111111",
+      "decision": "approved",
+      "expectedVersion": 0,
+      "reason": "foundation-reference",
+      "unexpected": "denied"
+    },
+    "valid": false
+  },
+  {
+    "name": "knowledge-proposal.schema valid",
+    "schema": "knowledge-proposal.schema.json",
+    "data": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "scopeId": "11111111-1111-4111-8111-111111111111",
+      "documentId": "11111111-1111-4111-8111-111111111111",
+      "baseRevision": "foundation-reference",
+      "baseCommit": "foundation-reference",
+      "body": "foundation-reference",
+      "reason": "foundation-reference",
+      "evidence": [],
+      "risks": "foundation-reference",
+      "author": "foundation-reference",
+      "executionId": "foundation-reference",
+      "state": "proposed",
+      "version": 0,
+      "diff": "foundation-reference",
+      "createdAt": "foundation-reference"
+    },
+    "valid": true
+  },
+  {
+    "name": "knowledge-proposal.schema rejects missing",
+    "schema": "knowledge-proposal.schema.json",
+    "data": {
+      "scopeId": "11111111-1111-4111-8111-111111111111",
+      "documentId": "11111111-1111-4111-8111-111111111111",
+      "baseRevision": "foundation-reference",
+      "baseCommit": "foundation-reference",
+      "body": "foundation-reference",
+      "reason": "foundation-reference",
+      "evidence": [],
+      "risks": "foundation-reference",
+      "author": "foundation-reference",
+      "executionId": "foundation-reference",
+      "state": "proposed",
+      "version": 0,
+      "diff": "foundation-reference",
+      "createdAt": "foundation-reference"
+    },
+    "valid": false
+  },
+  {
+    "name": "knowledge-proposal.schema rejects unknown",
+    "schema": "knowledge-proposal.schema.json",
+    "data": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "scopeId": "11111111-1111-4111-8111-111111111111",
+      "documentId": "11111111-1111-4111-8111-111111111111",
+      "baseRevision": "foundation-reference",
+      "baseCommit": "foundation-reference",
+      "body": "foundation-reference",
+      "reason": "foundation-reference",
+      "evidence": [],
+      "risks": "foundation-reference",
+      "author": "foundation-reference",
+      "executionId": "foundation-reference",
+      "state": "proposed",
+      "version": 0,
+      "diff": "foundation-reference",
+      "createdAt": "foundation-reference",
+      "unexpected": "denied"
+    },
+    "valid": false
+  },
+  {
+    "name": "knowledge-revision.schema valid",
+    "schema": "knowledge-revision.schema.json",
+    "data": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "documentId": "11111111-1111-4111-8111-111111111111",
+      "proposalId": "11111111-1111-4111-8111-111111111111",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "createdAt": "foundation-reference",
+      "author": "foundation-reference"
+    },
+    "valid": true
+  },
+  {
+    "name": "knowledge-revision.schema rejects missing",
+    "schema": "knowledge-revision.schema.json",
+    "data": {
+      "documentId": "11111111-1111-4111-8111-111111111111",
+      "proposalId": "11111111-1111-4111-8111-111111111111",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "createdAt": "foundation-reference",
+      "author": "foundation-reference"
+    },
+    "valid": false
+  },
+  {
+    "name": "knowledge-revision.schema rejects unknown",
+    "schema": "knowledge-revision.schema.json",
+    "data": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "documentId": "11111111-1111-4111-8111-111111111111",
+      "proposalId": "11111111-1111-4111-8111-111111111111",
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "createdAt": "foundation-reference",
+      "author": "foundation-reference",
+      "unexpected": "denied"
+    },
+    "valid": false
+  },
+  {
+    "name": "brain-scope valid",
+    "schema": "brain-scope.schema.json",
+    "valid": true,
+    "data": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "label": "Example project",
+      "repositoryAlias": "api"
+    }
+  },
+  {
+    "name": "brain-scope foreign alias",
+    "schema": "brain-scope.schema.json",
+    "valid": false,
+    "data": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "label": "Example project",
+      "repositoryAlias": "external"
+    }
+  },
+  {
+    "name": "brain-scope extra field",
+    "schema": "brain-scope.schema.json",
+    "valid": false,
+    "data": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "label": "Example project",
+      "repositoryAlias": "api",
+      "secret": "forbidden"
+    }
+  }
+]
