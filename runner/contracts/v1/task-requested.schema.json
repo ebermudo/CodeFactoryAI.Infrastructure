@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TaskRequestedV1 draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "messageId",
+    "schemaVersion",
+    "messageType",
+    "occurredAt",
+    "correlationId",
+    "causationId",
+    "executionId",
+    "taskId",
+    "attemptId",
+    "payload"
+  ],
+  "properties": {
+    "messageId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "messageType": {
+      "const": "task.requested"
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlationId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "causationId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "executionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "taskId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "attemptId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projectId",
+        "role",
+        "workspaceId",
+        "contextSnapshotId",
+        "specificationRevisionId",
+        "expectedCommit",
+        "deadlineAt",
+        "leaseToken",
+        "policyVersion"
+      ],
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "role": {
+          "enum": [
+            "specification",
+            "architect",
+            "developer",
+            "qa",
+            "review-correctness",
+            "review-architecture",
+            "review-security",
+            "review-testing",
+            "finding-verifier",
+            "approval"
+          ]
+        },
+        "workspaceId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "contextSnapshotId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "specificationRevisionId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedCommit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}([a-f0-9]{24})?$"
+        },
+        "deadlineAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "leaseToken": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "policyVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        }
+      }
+    }
+  }
+}

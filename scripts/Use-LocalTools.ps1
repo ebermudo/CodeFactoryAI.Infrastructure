@@ -1,0 +1,9 @@
+$toolRoot = Join-Path $PSScriptRoot '../.tools'
+$env:PATH = "$(Join-Path $toolRoot 'dotnet');$(Join-Path $toolRoot 'node-download/node-v24.22.2-win-x64');$env:PATH"
+$env:DOTNET_ROOT = Join-Path $toolRoot 'dotnet'
+$env:PLAYWRIGHT_BROWSERS_PATH = Join-Path $toolRoot 'playwright'
+$env:DOTNET_CLI_HOME = Join-Path $toolRoot 'dotnet-home'
+$env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:NUGET_PACKAGES = Join-Path $toolRoot 'nuget'
+$env:NPM_CONFIG_CACHE = Join-Path $toolRoot 'npm-cache'

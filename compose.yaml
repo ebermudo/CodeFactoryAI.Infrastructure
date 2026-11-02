@@ -1,0 +1,41 @@
+name: codefactory-foundation
+services:
+  postgres:
+    image: postgres:17-alpine@sha256:266d3c257594e195b309ae9d1805e54c788f1d7b375f56bf6c367aac6c917e7b
+    environment:
+      POSTGRES_USER: factory
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run Initialize-Local.ps1 first}
+      POSTGRES_DB: codefactory
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U factory -d codefactory"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+    networks: [factory]
+  rabbitmq:
+    image: rabbitmq:4.3.6-management-alpine@sha256:3505b6096cdbc083bcc363e74366f575ecd0c1a55be4dadcbc60fa08e34647e1
+    environment:
+      RABBITMQ_DEFAULT_USER: factory
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:?Run Initialize-Local.ps1 first}
+    ports:
+      - "127.0.0.1:55672:5672"
+      - "127.0.0.1:15682:15672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmq-diagnostics -q ping && rabbitmq-diagnostics -q check_running && rabbitmq-diagnostics -q check_port_connectivity"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+    networks: [factory]
+networks:
+  factory:
+volumes:
+  postgres-data:
+  rabbitmq-data:

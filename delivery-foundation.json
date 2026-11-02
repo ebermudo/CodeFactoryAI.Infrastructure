@@ -1,0 +1,24 @@
+{
+  "delivery": "phase1-foundation-2026-11-02",
+  "scope": "Foundation only",
+  "repositories": {
+    "CodeFactoryAI.API": "052ede9e9f3e8fb78fbb24c53fcd0f6c6513b16a",
+    "CodeFactoryAI.ClientAngular": "ecb8077f72a3336e24279303675cb1262212b19d",
+    "CodeFactoryAI.Agents": "00bf5e52b88139581ace21c6b06c8b4e755582a3"
+  },
+  "infrastructureRevision": "the commit containing this manifest",
+  "contracts": {
+    "schemas": {
+      "context-package.schema.json": "d7804c58610a093b94228440944ab195e321c4476c917c34e96c26c92f807913",
+      "runner-request.schema.json": "3256455cda7360bff52a96673d5a8df5308e6b785b9b26c02103ebc9370afd43",
+      "runner-result.schema.json": "38571896b75be2392d4eb57c98b949df38a0a29ababb8de0a9eb99d0b7d6fdf6",
+      "task-requested.schema.json": "74b6704136331e75414d608f9be4af2773c88cf66f0f63daaf1979eb41b4b25b",
+      "task-result.schema.json": "48009bef019a82cb4d6d3cb82b679417d7ce9c78f0f3af82b5a39b94ca495813"
+    },
+    "version": "1.0.0"
+  },
+  "validationEvidence": "docs/evidence/foundation-validation.json",
+  "validationEvidenceSha256Lf": "83901d7143a7f0929001e4fe17a52593595f96b177754bc2d69c4525b3bf2435",
+  "autonomousExecutionEnabled": false,
+  "rscInstalled": false
+}

@@ -1,0 +1,103 @@
+{
+  "phase": "1-foundation",
+  "timestampUtc": "2026-11-02T16:29:48.244902+00:00",
+  "autonomousExecutionEnabled": false,
+  "results": [
+    {
+      "name": "contracts-drift",
+      "exitCode": 0,
+      "durationSeconds": 0.28,
+      "logSha256": "6d95818f7106a1544e540dc1c8cdf66d843f027815892b0d26c6a4af61fdfa88"
+    },
+    {
+      "name": "dotnet-restore-locked",
+      "exitCode": 0,
+      "durationSeconds": 1.03,
+      "logSha256": "0c14316100e67d800b2d7642e8fc450c4d2660b474dda5534722d20562ebc1eb"
+    },
+    {
+      "name": "dotnet-build",
+      "exitCode": 0,
+      "durationSeconds": 2.44,
+      "logSha256": "a1237f491ca98d38daa479c13053053f1e52e701d46494017829dd9f1eedb2e9"
+    },
+    {
+      "name": "dotnet-tests",
+      "exitCode": 0,
+      "durationSeconds": 3.84,
+      "logSha256": "4426d66868d8127dc1281a92b86d4016013fe68e32d2564a8a76c809e1410cc8"
+    },
+    {
+      "name": "agents-tests",
+      "exitCode": 0,
+      "durationSeconds": 1.56,
+      "logSha256": "88549042854be26477aef2614453bf10d09ea4341d613e936dece51a6e752b2d"
+    },
+    {
+      "name": "python-lint",
+      "exitCode": 0,
+      "durationSeconds": 0.14,
+      "logSha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "python-types",
+      "exitCode": 0,
+      "durationSeconds": 0.94,
+      "logSha256": "a3ee8cc563d620855a76e1c43ed6f1118b5d68435d0c1b38b01ae7646398501f"
+    },
+    {
+      "name": "runner-tests",
+      "exitCode": 0,
+      "durationSeconds": 1.73,
+      "logSha256": "933c669ab5f1ee79e9b3bea7599074fec4d0de78dce960a0683deae30a84be26"
+    },
+    {
+      "name": "compose-config",
+      "exitCode": 0,
+      "durationSeconds": 0.16,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "services-integration",
+      "exitCode": 0,
+      "durationSeconds": 1.27,
+      "logSha256": "2e74bee792b36a881e00951bbf27295c9ae73549f33b20928396d20ce5217cbd"
+    },
+    {
+      "name": "services-persistence",
+      "exitCode": 0,
+      "durationSeconds": 9.55,
+      "logSha256": "7d46cc3e8d859dfcccddc32536104bad7b8c12e08bbceb6b42331628e2669567"
+    },
+    {
+      "name": "angular-types",
+      "exitCode": 0,
+      "durationSeconds": 0.81,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "angular-build",
+      "exitCode": 0,
+      "durationSeconds": 3.45,
+      "logSha256": "76008d9389deec1aac338946844686ce6cf6483150dd7a1daa22e30eb36016af"
+    },
+    {
+      "name": "angular-unit",
+      "exitCode": 0,
+      "durationSeconds": 2.12,
+      "logSha256": "fdf2093a398ce838e51abe54ad7bef461bc829533656eb16b796d703cd8226d7"
+    },
+    {
+      "name": "angular-contracts",
+      "exitCode": 0,
+      "durationSeconds": 0.42,
+      "logSha256": "2240018cabec139e8c1b652bd0d51e36720fc4b39bc66d06e8fe170a8542a9c4"
+    },
+    {
+      "name": "angular-e2e",
+      "exitCode": 0,
+      "durationSeconds": 7.92,
+      "logSha256": "0c09fc445a41be3034fa4c6d11cda6906f6236da90122654dda709de7ac893f0"
+    }
+  ]
+}

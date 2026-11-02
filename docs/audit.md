@@ -29,3 +29,7 @@ El binario Codex está en la extensión openai.chatgpt-26.1021.22027-win32-x64. 
 - Python 3.12, PostgreSQL 17 y RabbitMQ 4 como objetivos del diseño; parches, imágenes/digests y compatibilidad de drivers se verificarán antes de instalar. No se afirma que estas imágenes estén ya disponibles localmente.
 
 No se han realizado pruebas funcionales, builds, análisis de vulnerabilidades ni E2E. La comprobación de documentación y contratos de esta entrega no acredita funcionamiento de la plataforma.
+
+## Actualización Foundation
+
+La búsqueda adicional de rutas y registro tampoco encontró SDK/Node instalados. Se prepararon .NET 10.0.403 y Node 24.22.2 portables bajo Infrastructure/.tools con hashes oficiales, sin instalación global. Ver [informe de Fase 1](foundation-report.md) y toolchain.json.

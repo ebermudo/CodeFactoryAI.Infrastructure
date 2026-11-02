@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunnerRequestV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "attemptId",
+    "workspaceId",
+    "provider",
+    "contextSnapshotId"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "attemptId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "workspaceId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "contextSnapshotId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "provider": {
+      "enum": [
+        "codex",
+        "claude"
+      ]
+    }
+  }
+}

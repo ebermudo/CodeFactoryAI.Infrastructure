@@ -1,0 +1,14 @@
+[build-system]
+requires=["setuptools==80.9.0"]
+build-backend="setuptools.build_meta"
+[project]
+name="codefactory-runner"
+version="0.1.0"
+requires-python=">=3.12"
+dependencies=["fastapi==0.121.0","pydantic==2.12.3","uvicorn==0.38.0"]
+[project.optional-dependencies]
+test=["pytest==8.4.2","httpx==0.28.1"]
+[tool.setuptools.packages.find]
+where=["src"]
+[tool.pytest.ini_options]
+testpaths=["tests"]

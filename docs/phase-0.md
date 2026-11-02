@@ -1,6 +1,6 @@
 # Entrega Fase 0 · CodeFactoryAI
 
-Estado: propuesta para aprobación. Fecha 2026-11-02 (Europe/Madrid). Alcance autorizado: auditoría, diseño, documentos y commits locales en los cuatro repositorios confirmados dentro de Desktop/CodeFactoryAI. Fase 1 y RSC pendientes de aprobación; sin código de producto, instalaciones, push ni tareas de inferencia.
+Estado histórico: arquitectura aprobada y Fase 1 autorizada por el usuario el 2026-11-02. Foundation ya está validada; ver [informe actual](foundation-report.md). El resto de este documento conserva el plan inicial. RSC y Fase 2 requieren aprobación posterior.
 
 ## Documentos de revisión
 

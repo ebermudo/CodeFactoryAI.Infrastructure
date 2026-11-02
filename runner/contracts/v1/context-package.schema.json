@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContextPackageV1 draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "snapshotId",
+    "projectId",
+    "taskId",
+    "policyVersion",
+    "createdAt",
+    "repositoryCommit",
+    "globalKnowledgeCommit",
+    "projectKnowledgeCommit",
+    "budgetTokens",
+    "documents"
+  ],
+  "properties": {
+    "snapshotId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "projectId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "taskId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "policyVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "repositoryCommit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}([a-f0-9]{24})?$"
+    },
+    "globalKnowledgeCommit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}([a-f0-9]{24})?$"
+    },
+    "projectKnowledgeCommit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}([a-f0-9]{24})?$"
+    },
+    "budgetTokens": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 200000
+    },
+    "documents": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "documentId",
+          "revisionId",
+          "sha256",
+          "scope",
+          "status",
+          "required"
+        ],
+        "properties": {
+          "documentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "revisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "scope": {
+            "enum": [
+              "global",
+              "project"
+            ]
+          },
+          "status": {
+            "enum": [
+              "official",
+              "candidate"
+            ]
+          },
+          "required": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

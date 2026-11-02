@@ -1,0 +1,10 @@
+{
+  "schemas": {
+    "context-package.schema.json": "d7804c58610a093b94228440944ab195e321c4476c917c34e96c26c92f807913",
+    "runner-request.schema.json": "3256455cda7360bff52a96673d5a8df5308e6b785b9b26c02103ebc9370afd43",
+    "runner-result.schema.json": "38571896b75be2392d4eb57c98b949df38a0a29ababb8de0a9eb99d0b7d6fdf6",
+    "task-requested.schema.json": "74b6704136331e75414d608f9be4af2773c88cf66f0f63daaf1979eb41b4b25b",
+    "task-result.schema.json": "48009bef019a82cb4d6d3cb82b679417d7ce9c78f0f3af82b5a39b94ca495813"
+  },
+  "version": "1.0.0"
+}
